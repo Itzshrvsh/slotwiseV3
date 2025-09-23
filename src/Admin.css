@@ -1,0 +1,96 @@
+/* --- Global container --- */
+.admin-container {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- Box / Card --- */
+.admin-box {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* --- Headings --- */
+.admin-box h2 {
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* --- Logout button --- */
+.logout-btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  float: right;
+  margin-top: -50px; /* Pull up near the heading */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* --- Table styles --- */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.user-table th, .user-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.user-table th {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  font-weight: 600;
+}
+
+.user-table tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+.user-table tr:hover {
+  background: #e0eafc;
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .admin-box {
+    padding: 20px;
+  }
+
+  .logout-btn {
+    float: none;
+    display: block;
+    margin: 10px auto 20px;
+  }
+
+  .user-table th, .user-table td {
+    padding: 8px 10px;
+  }
+}
