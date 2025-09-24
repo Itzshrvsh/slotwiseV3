@@ -1,96 +1,153 @@
-/* --- Global container --- */
+/* ========================================
+   Fullscreen Admin Dashboard
+======================================== */
 .admin-container {
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #e0eafc, #cfdef3);
-  min-height: 100vh;
-  padding: 40px 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #1e1e1e, #121212);
+  color: #fff;
+  padding: 20px;
+  overflow-x: hidden;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  box-sizing: border-box;
 }
 
-/* --- Box / Card --- */
+/* Dashboard Box (stretch full width for large screens) */
 .admin-box {
-  background: #fff;
-  padding: 30px 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
+  background: #1b1b1b;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* --- Headings --- */
+/* Headings */
 .admin-box h2 {
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 2.5rem;
+  color: #ff4b2b;
+  text-shadow: 0 0 10px #ff4b2b;
   text-align: center;
 }
 
-/* --- Logout button --- */
+.admin-box h3 {
+  font-size: 1.8rem;
+  color: #00f0ff;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px #00f0ff;
+}
+
+/* Logout Button */
 .logout-btn {
-  display: inline-block;
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
-  color: white;
-  border: none;
+  align-self: flex-end;
   padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
   font-weight: 600;
-  float: right;
-  margin-top: -50px; /* Pull up near the heading */
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,75,43,0.7);
 }
 
-/* --- Table styles --- */
+/* Tables */
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 30px;
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-.user-table th, .user-table td {
+.user-table th,
+.user-table td {
   padding: 12px 15px;
-  border: 1px solid #ddd;
-  text-align: left;
+  text-align: center;
 }
 
 .user-table th {
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  color: white;
-  font-weight: 600;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .user-table tr:nth-child(even) {
-  background: #f5f5f5;
+  background-color: #1a1a1a;
 }
 
 .user-table tr:hover {
-  background: #e0eafc;
-  transform: scale(1.01);
-  transition: 0.2s;
+  background-color: #2c2c2c;
+  transition: background-color 0.3s ease;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
+/* Approve Buttons */
+.user-table button {
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-table button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,198,255,0.7);
+}
+
+/* Loading & Messages */
+.admin-box p {
+  text-align: center;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .admin-box {
     padding: 20px;
   }
 
-  .logout-btn {
-    float: none;
-    display: block;
-    margin: 10px auto 20px;
+  .admin-box h2 {
+    font-size: 2rem;
   }
 
-  .user-table th, .user-table td {
-    padding: 8px 10px;
+  .admin-box h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-box {
+    padding: 15px;
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+
+  .user-table button {
+    width: 100%;
+    padding: 10px;
   }
 }

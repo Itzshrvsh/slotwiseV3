@@ -40,44 +40,25 @@ export default function Home() {
   const isAdmin = roles.is_admin || roles.is_adminfaculty;
 
   return (
-    <div className="home-container" style={{ padding: "20px", textAlign: "center" }}>
-      <h2>Home Page</h2>
-      {user && <p>Welcome, {user.email}</p>}
+    <div className="home-container">
+  <h2>Home Page</h2>
+  {user && <p>Welcome, {user.email}</p>}
 
-      {!isAdmin && (
-        <p style={{ color: "red", fontWeight: "bold" }}>
-          You are not an admin.
-        </p>
-      )}
+  {!isAdmin && (
+    <p style={{ color: "red", fontWeight: "bold" }}>
+      You are not an admin.
+    </p>
+  )}
 
-      {isAdmin && (
-        <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "20px" }}>
-          <button 
-            onClick={handleLogout} 
-            style={{ background: "#e74c3c", color: "#fff" }}
-          >
-            Logout
-          </button>
-          <button 
-            onClick={() => handleRoleNavigation("/admin")} 
-            style={{ background: "#3498db", color: "#fff" }}
-          >
-            Admin Dashboard
-          </button>
-          <button 
-            onClick={() => handleRoleNavigation("/admin-faculty")} 
-            style={{ background: "#2ecc71", color: "#fff" }}
-          >
-            Admin Faculty
-          </button>
-          <button 
-            onClick={() => handleRoleNavigation("/faculty")} 
-            style={{ background: "#c9cc2eff", color: "#fff" }}
-          >
-            Faculty
-          </button>
-        </div>
-      )}
+  {isAdmin && (
+    <div className="button-group">
+      <button onClick={handleLogout}>Logout</button>
+      <button onClick={() => handleRoleNavigation("/admin")}>Admin Dashboard</button>
+      <button onClick={() => handleRoleNavigation("/admin-faculty")}>Admin Faculty</button>
+      <button onClick={() => handleRoleNavigation("/faculty")}>Faculty</button>
     </div>
+  )}
+</div>
+
   );
 }

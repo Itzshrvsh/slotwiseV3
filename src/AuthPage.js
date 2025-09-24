@@ -14,33 +14,49 @@ export default function AuthPage() {
 
   const handleSignup = async () => {
     setError(null);
-
-    // signup
-    const { error: signupError } = await supabase.auth.signUp({ email, password });
+  
+    // signup using Supabase auth
+    const { error: signupError, data: signupData } = await supabase.auth.signUp({ email, password });
     if (signupError) return setError(signupError.message);
-
+  
     // fetch user id after signup
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return setError("Could not get user info after signup");
-
+  
     const roleFlags = {
       is_admin: role === "admin",
       is_faculty: role === "faculty",
       is_adminfaculty: role === "adminfaculty",
       is_student: role === "student"
     };
-
-    const { error: insertError } = await supabase.from("profiles").insert([{
-      id: user.id,
-      email,
-      full_name: fullName,
-      ...roleFlags
-    }]);
-
-    if (insertError) return setError(insertError.message);
-
-    navigate("/home");
+  
+    if (role === "student") {
+      // auto-insert students
+      const { error: insertError } = await supabase.from("profiles").insert([{
+        id: user.id,
+        email,
+        full_name: fullName,
+        ...roleFlags
+      }]);
+  
+      if (insertError) return setError(insertError.message);
+  
+      navigate("/home");
+    } else {
+      // insert into pending_users for approval
+      const { error: pendingError } = await supabase.from("pending_users").insert([{
+        id: user.id,
+        email,
+        full_name: fullName,
+        role
+      }]);
+  
+      if (pendingError) return setError(pendingError.message);
+  
+      setError("Your account is pending approval by an admin.");
+    }
   };
+  
 
   const handleLogin = async () => {
     setError(null);
